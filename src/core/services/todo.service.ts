@@ -16,4 +16,12 @@ export class ToDoItemService {
     toObservable(this.items$).pipe(
       map((item: ToDoItem[]) => item.filter((el) => el.status === status))
     );
+  
+  addItem = (item: Omit<ToDoItem, 'id'>) => {
+    this.items.push({
+      ...item,
+      id: this.items.length
+    });
+    this.items$.set(this.items);
+  }
 }

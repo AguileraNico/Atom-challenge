@@ -1,7 +1,7 @@
 export enum TODO_STATUS {
-  ACTIVE,
-  DONE,
-  PENDING
+  PENDING = 'Pending',
+  IN_PROGRESS = 'In Progress',
+  COMPLETED = 'Completed'
 }
 
 export type ToDoItem = {
