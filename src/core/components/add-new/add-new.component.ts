@@ -2,18 +2,25 @@ import { Component } from '@angular/core';
 import { ToDoItem, TODO_STATUS } from 'src/core/models/todo-item.model';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatSelectModule} from '@angular/material/select';
-import {MatInputModule} from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { NgFor } from '@angular/common';
 
 @Component({
   standalone: true,
   selector: 'app-add-new-task',
   templateUrl: './add-new.component.html',
   styleUrls: ['./add-new.component.scss'],
-  // imports: [MatDialogModule, MatFormFieldModule, MatSelectModule, MatInputModule],
+  imports: [
+    MatDialogModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    NgFor,
+  ],
 })
 export class AddNewModalComponent {
-  // status = Object.values(TODO_STATUS);
+  status = Object.values(TODO_STATUS);
 
-  // data!: Omit<ToDoItem, 'id'>;
+  data!: Omit<ToDoItem, 'id'>;
 }

@@ -1,6 +1,6 @@
-import { Injectable, signal, Signal } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { map } from 'rxjs';
-import { Observable, toObservable, filter } from 'rxjs/observable';
+import { toObservable, toSignal } from 'rxjs/observable';
 import { ToDoItem, TODO_STATUS } from '../models/todo-item.model';
 
 @Injectable({
@@ -13,8 +13,10 @@ export class ToDoItemService {
   getItems = () => this.items$.asReadonly();
 
   getItemsByStatus = (status: TODO_STATUS) =>
-    toObservable(this.items$).pipe(
-      map((item: ToDoItem[]) => item.filter((el) => el.status === status))
+    toSignal(
+      toObservable(this.items$).pipe(
+        map((item: ToDoItem[]) => item.filter((el) => el.status === status))
+      )
     );
 
   addItem = (item: Omit<ToDoItem, 'id'>) => {
