@@ -1,10 +1,6 @@
-import {Component} from '@angular/core';
-import {NgFor} from '@angular/common';
-import {
-  CdkDragDrop,
-  CdkDrag,
-  CdkDropList,
-} from '@angular/cdk/drag-drop';
+import { Component } from '@angular/core';
+import { NgFor } from '@angular/common';
+import { CdkDragDrop, CdkDrag, CdkDropList } from '@angular/cdk/drag-drop';
 import { ToDoItemService } from '@core/services/todo.service';
 import { ToDoItem, TODO_STATUS } from '@core/models/todo-item.model';
 
@@ -28,9 +24,8 @@ export class ToDoTableComponent {
     if (event.previousContainer !== event.container) {
       this.todoService.updateItem({
         ...event.item,
-        status: event.container as TODO_STATUS
-      })
+        status: event.container as TODO_STATUS,
+      });
     }
   }
-}
 }
