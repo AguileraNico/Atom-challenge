@@ -16,12 +16,20 @@ export class ToDoItemService {
     toObservable(this.items$).pipe(
       map((item: ToDoItem[]) => item.filter((el) => el.status === status))
     );
-  
+
   addItem = (item: Omit<ToDoItem, 'id'>) => {
     this.items.push({
       ...item,
-      id: this.items.length
+      id: this.items.length,
     });
     this.items$.set(this.items);
-  }
+  };
+
+  updateItem = (item: ToDoItem) => {
+    const index = this.items.findIndex((el) => el.id === item.id);
+    if (index !== -1) {
+      this.items[index] = item;
+      this.items$.next(this.items);
+    }
+  };
 }
